@@ -32,26 +32,8 @@ body {
 /* ==========================================
    2. HEADER Y NAVEGACIÓN
    ========================================== */
-.header-principal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--color-secundario); /* Fondo oscuro elegante */
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
 
-.contenedor-header {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Logo */
+/* Logo (se reutiliza tanto en la navbar superior como en el footer) */
 .logo {
     display: flex;
     align-items: center;
@@ -67,24 +49,6 @@ body {
     color: var(--color-blanco);
     font-weight: 700;
     font-size: 20px;
-}
-
-/* Links del Menú */
-.menu-navegacion {
-    display: flex;
-    gap: 25px;
-}
-
-.enlace-nav {
-    color: #E0DADB; /* Un blanco grisáceo para que no brille tanto */
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.enlace-nav:hover, .enlace-nav.activo {
-    color: var(--color-primario); /* Cambia a rosa al pasar el mouse */
 }
 
 /* Botón Solicitar ahora */
@@ -109,7 +73,7 @@ body {
    ========================================== */
 .seccion-hero {
     position: relative;
-    padding: 140px 20px 80px 20px; /* Margen superior para que baje del header fijo */
+    padding: 90px 20px 80px 20px;
     background-color: var(--color-blanco);
     overflow: hidden;
 }
@@ -151,7 +115,7 @@ body {
 
 .hero-descripcion {
     font-size: 18px;
-    color: var(--color-texto-mutated);
+    color: var(--color-texto-mutado);
     margin-bottom: 35px;
     max-width: 500px;
 }
@@ -717,43 +681,6 @@ body {
     max-width: 300px;
 }
 
-/* Iconos de Redes Sociales */
-.redes-sociales {
-    display: flex;
-    gap: 15px;
-}
-
-.redes-sociales a {
-    width: 38px;
-    height: 38px;
-    background-color: #2D1820; /* Fondo oscuro sutil para los círculos */
-    color: var(--color-blanco);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.redes-sociales a:hover {
-    background-color: var(--color-primario); /* Se vuelve rosa al pasar el mouse */
-}
-
-/* Columna de Contacto */
-.contacto-footer p {
-    font-size: 14px;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #B5A9AC;
-}
-
-.contacto-footer p i {
-    color: var(--color-primario); /* Iconos de contacto en rosa */
-}
-
 /* Barra inferior de Copyright */
 .barra-copyright {
     border-top: 1px solid #2D1820;
@@ -782,16 +709,12 @@ body {
         text-align: center;
     }
     
-    .info-marca .logo, .redes-sociales {
+    .info-marca .logo {
         justify-content: center;
     }
     
     .descripcion-footer {
         margin: 0 auto 20px auto;
-    }
-    
-    .contacto-footer p {
-        justify-content: center;
     }
 }
 /* ==========================================
@@ -1245,7 +1168,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1a0b12; /* Color de fondo oscuro de tu cabecera */
+  background-color: var(--color-secundario); /* Mismo fondo oscuro que el resto del sitio */
   padding: 1rem 1.5rem;
   position: relative;
   z-index: 1000;
@@ -1282,19 +1205,25 @@ body {
 
 .nav-links a.active,
 .nav-links a:hover {
-  color: #ff3b6b; /* Color rosado de tu marca */
+  color: var(--color-primario); /* Mismo rosa de marca que usa el resto del sitio */
   opacity: 1;
 }
 
 /* Botón de la barra */
 .btn-primary {
-  background-color: #fde8ef;
-  color: #ff3b6b;
+  background-color: var(--color-fondo-suave);
+  color: var(--color-primario);
   padding: 0.6rem 1.2rem;
   border-radius: 20px;
   text-decoration: none;
   font-weight: bold;
   font-size: 0.85rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
 }
 
 /* Ocultar botón hamburguesa en desktop */
@@ -1330,7 +1259,7 @@ body {
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: #1a0b12;
+    background-color: var(--color-secundario);
     padding: 1.5rem;
     box-sizing: border-box;
     gap: 1.5rem;
