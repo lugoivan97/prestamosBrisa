@@ -794,3 +794,449 @@ body {
         justify-content: center;
     }
 }
+/* ==========================================
+   8. BOTONES DE PLAZO Y RESUMEN DE CUOTA
+   ========================================== */
+.opciones-plazo {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-plazo {
+    flex: 1;
+    min-width: 90px;
+    padding: 12px 10px;
+    border-radius: 12px;
+    border: 2px solid #EAE1E3;
+    background-color: var(--color-blanco);
+    color: var(--color-texto-oscuro);
+    font-family: var(--fuente-principal);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-plazo:hover {
+    border-color: var(--color-primario);
+}
+
+.btn-plazo.activo {
+    background-color: var(--color-primario);
+    border-color: var(--color-primario);
+    color: var(--color-blanco);
+}
+
+.resumen-cuota {
+    background-color: var(--color-fondo-suave);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin: 20px 0 25px 0;
+}
+
+.fila-resumen {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: var(--color-texto-mutado);
+    padding: 6px 0;
+}
+
+.fila-resumen strong {
+    color: var(--color-secundario);
+    font-size: 15px;
+}
+
+.btn-outline-solicitud {
+    background-color: var(--color-blanco);
+    color: var(--color-primario);
+    border: 2px solid var(--color-primario);
+    box-shadow: none;
+}
+
+.btn-outline-solicitud:hover {
+    background-color: var(--color-fondo-suave);
+}
+
+.separador-form {
+    height: 1px;
+    background-color: #EAE1E3;
+    margin: 25px 0;
+}
+
+.bloque-oculto {
+    display: none !important;
+}
+
+.fila-dos-columnas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .fila-dos-columnas {
+        grid-template-columns: 1fr;
+    }
+}
+
+.texto-error {
+    color: #C21E4E;
+    font-size: 13px;
+    font-weight: 600;
+    margin: -10px 0 15px 0;
+    min-height: 16px;
+}
+
+.texto-confirmacion {
+    color: #1E8E4E;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.btn-enviar-solicitud:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Truco: el nombre del logo es el disparador oculto del panel admin */
+#disparador-admin {
+    cursor: default;
+    user-select: none;
+}
+
+/* ==========================================
+   9. MODALES (condiciones / login admin)
+   ========================================== */
+.overlay-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(26, 11, 16, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    padding: 20px;
+}
+
+.overlay-modal.oculto {
+    display: none;
+}
+
+.caja-modal {
+    background-color: var(--color-blanco);
+    border-radius: 20px;
+    padding: 35px;
+    max-width: 480px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+}
+
+.caja-modal-chica {
+    max-width: 380px;
+}
+
+.caja-modal h3 {
+    color: var(--color-secundario);
+    font-size: 20px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.caja-modal h3 i {
+    color: var(--color-primario);
+}
+
+.lista-condiciones {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.lista-condiciones li {
+    font-size: 14px;
+    color: var(--color-texto-oscuro);
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.lista-condiciones li::before {
+    content: "\f058";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--color-primario);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 13px;
+}
+
+.detalle-mora {
+    background-color: var(--color-fondo-suave);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--color-texto-mutado);
+    margin-bottom: 20px;
+}
+
+.check-aceptar {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-secundario);
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.check-aceptar input {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-primario);
+    cursor: pointer;
+}
+
+.botones-modal {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+.btn-modal-secundario, .btn-modal-primario {
+    padding: 12px 22px;
+    border-radius: 30px;
+    font-family: var(--fuente-principal);
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.btn-modal-secundario {
+    background-color: var(--color-fondo-suave);
+    color: var(--color-texto-oscuro);
+}
+
+.btn-modal-secundario:hover {
+    background-color: #F5DCE4;
+}
+
+.btn-modal-primario {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+}
+
+.btn-modal-primario:hover {
+    background-color: var(--color-primario-hover);
+}
+
+.btn-modal-primario:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.texto-ayuda-admin {
+    font-size: 13px;
+    color: var(--color-texto-mutado);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+#modal-admin-login input {
+    margin-bottom: 12px;
+}
+
+/* ==========================================
+   10. PANEL ADMIN
+   ========================================== */
+.caja-admin {
+    background-color: var(--color-blanco);
+    border-radius: 20px;
+    max-width: 800px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+}
+
+.cabecera-admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    border-bottom: 1px solid #F0E8EA;
+    position: sticky;
+    top: 0;
+    background-color: var(--color-blanco);
+    z-index: 5;
+}
+
+.cabecera-admin h2 {
+    font-size: 20px;
+    color: var(--color-secundario);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cabecera-admin h2 i {
+    color: var(--color-primario);
+}
+
+.btn-cerrar-panel {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: var(--color-texto-mutado);
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+.btn-cerrar-panel:hover {
+    background-color: var(--color-fondo-suave);
+    color: var(--color-primario);
+}
+
+.tabs-admin {
+    display: flex;
+    gap: 8px;
+    padding: 20px 30px 0 30px;
+    border-bottom: 1px solid #F0E8EA;
+}
+
+.tab-admin {
+    background: none;
+    border: none;
+    padding: 12px 16px;
+    font-family: var(--fuente-principal);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--color-texto-mutado);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.tab-admin.activo {
+    color: var(--color-primario);
+    border-bottom-color: var(--color-primario);
+}
+
+.contenido-tab {
+    padding: 25px 30px 35px 30px;
+}
+
+.fila-config {
+    margin-bottom: 16px;
+}
+
+.fila-config label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-secundario);
+    margin-bottom: 6px;
+}
+
+.lista-prestamos {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.tarjeta-prestamo-admin {
+    border: 1px solid #F0E8EA;
+    border-radius: 14px;
+    padding: 18px;
+    background-color: var(--color-fondo-suave);
+}
+
+.cabecera-tarjeta-prestamo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.cabecera-tarjeta-prestamo h4 {
+    font-size: 15px;
+    color: var(--color-secundario);
+}
+
+.badge-vencimiento {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background-color: var(--color-blanco);
+    color: var(--color-texto-mutado);
+}
+
+.badge-vencimiento.vencido {
+    background-color: #FCE4EA;
+    color: #C21E4E;
+}
+
+.detalle-tarjeta-prestamo {
+    font-size: 13px;
+    color: var(--color-texto-mutado);
+    line-height: 1.7;
+}
+
+.detalle-tarjeta-prestamo b {
+    color: var(--color-texto-oscuro);
+}
+
+.btn-marcar-pagado {
+    margin-top: 12px;
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    border: none;
+    padding: 9px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-marcar-pagado:hover {
+    background-color: var(--color-primario-hover);
+}
+
+.texto-vacio-lista {
+    font-size: 14px;
+    color: var(--color-texto-mutado);
+    text-align: center;
+    padding: 30px 10px;
+}
+
+@media (max-width: 600px) {
+    .cabecera-admin, .tabs-admin, .contenido-tab {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+}

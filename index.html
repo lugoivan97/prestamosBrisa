@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TuPrestamo - Soluciones Financieras</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
+
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
     <header class="header-principal">
         <div class="contenedor-header">
-            <div class="logo">
+            <div class="logo" id="logo-secreto" title="">
                 <i class="fa-solid fa-chart-line icono-logo"></i>
-                <span class="nombre-logo">TuPrestamo</span>
+                <span class="nombre-logo" id="disparador-admin">TuPrestamo</span>
             </div>
             <nav class="menu-navegacion">
                 <a href="#inicio" class="enlace-nav activo">Inicio</a>
@@ -108,34 +108,34 @@
                             <span class="numero-paso">1</span>
                         </div>
                         <h3>Completá el formulario</h3>
-                        <p>Contanos cuánto necesitás y completá tus datos básicos.</p>
+                        <p>Contanos cuánto necesitás y elegí el plazo.</p>
                     </div>
                     <div class="conector-flecha"><i class="fa-solid fa-chevron-right"></i></div>
                     <div class="paso-item">
                         <div class="icono-paso-wrapper">
-                            <i class="fa-solid fa-clock"></i>
+                            <i class="fa-solid fa-file-signature"></i>
                             <span class="numero-paso">2</span>
                         </div>
-                        <h3>Evaluación rápida</h3>
-                        <p>Analizamos tu solicitud de manera inmediata.</p>
+                        <h3>Aceptá las condiciones</h3>
+                        <p>Leé y confirmá las condiciones del préstamo.</p>
                     </div>
                     <div class="conector-flecha"><i class="fa-solid fa-chevron-right"></i></div>
                     <div class="paso-item">
                         <div class="icono-paso-wrapper">
-                            <i class="fa-solid fa-circle-check"></i>
+                            <i class="fa-solid fa-id-card"></i>
                             <span class="numero-paso">3</span>
                         </div>
-                        <h3>Aprobación</h3>
-                        <p>Te confirmamos la aprobación de tu línea de crédito al instante.</p>
+                        <h3>Completá tus datos</h3>
+                        <p>Nombre, dirección y dos números de contacto.</p>
                     </div>
                     <div class="conector-flecha"><i class="fa-solid fa-chevron-right"></i></div>
                     <div class="paso-item">
                         <div class="icono-paso-wrapper">
-                            <i class="fa-solid fa-wallet"></i>
+                            <i class="fa-brands fa-whatsapp"></i>
                             <span class="numero-paso">4</span>
                         </div>
-                        <h3>Recibí tu dinero</h3>
-                        <p>Recibí la transferencia directo en tu cuenta bancaria o billetera virtual.</p>
+                        <h3>Confirmá por WhatsApp</h3>
+                        <p>Enviá tu solicitud y coordiná la entrega del dinero.</p>
                     </div>
                 </div>
             </div>
@@ -146,34 +146,82 @@
                 <div class="tarjeta-formulario-bloque">
                     <div class="encabezado-form">
                         <h2>Solicitá tu Préstamo Hoy</h2>
-                        <p>Mové la barra para elegir el monto y mirá tu cuota estimada abajo.</p>
+                        <p>Elegí el monto y el plazo, aceptá las condiciones y completá tus datos.</p>
                     </div>
-                    
-                    <form id="form-prestamo" onsubmit="enviarSolicitud(event)">
+
+                    <form id="form-prestamo">
+                        <!-- Paso 1: Monto y plazo -->
                         <div class="grupo-formulario">
                             <label for="monto-rango" class="label-dinamico">
                                 ¿Cuánto dinero necesitás?
                                 <span id="monto-visible" class="monto-destacado">$450.000</span>
                             </label>
-                            <input type="range" id="monto-rango" min="50000" max="5000000" step="50000" value="450000" class="slider-monto" oninput="actualizarMonto(this.value)">
+                            <input type="range" id="monto-rango" min="50000" max="5000000" step="50000" value="450000" class="slider-monto">
                             <div class="limites-slider">
                                 <span>$50.000</span>
                                 <span>$5.000.000</span>
                             </div>
-                            
-                            <p style="margin-top: 15px; font-size: 14px; font-weight: 600; color: #6B5E62;">
-                                1era cuota estimada: <span id="cuota-visible" style="color: #1A0B10; font-weight: 700;">$540.000</span>
-                            </p>
                         </div>
 
                         <div class="grupo-formulario">
-                            <label for="nombre-usuario">Nombre y Apellido</label>
-                            <input type="text" id="nombre-usuario" placeholder="Ej: Juan Pérez" required class="input-form">
+                            <label>Elegí el plazo de devolución</label>
+                            <div class="opciones-plazo" id="opciones-plazo">
+                                <button type="button" class="btn-plazo" data-dias="7">7 días</button>
+                                <button type="button" class="btn-plazo activo" data-dias="15">15 días</button>
+                                <button type="button" class="btn-plazo" data-dias="30">30 días</button>
+                            </div>
                         </div>
 
-                        <button type="submit" class="btn-enviar-solicitud">
-                            <i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp
+                        <div class="resumen-cuota">
+                            <div class="fila-resumen">
+                                <span>Interés del plazo elegido</span>
+                                <strong id="interes-visible">-</strong>
+                            </div>
+                            <div class="fila-resumen">
+                                <span>Total a devolver</span>
+                                <strong id="cuota-visible">-</strong>
+                            </div>
+                            <div class="fila-resumen">
+                                <span>Fecha de vencimiento</span>
+                                <strong id="fecha-visible">-</strong>
+                            </div>
+                        </div>
+
+                        <button type="button" id="btn-ver-condiciones" class="btn-enviar-solicitud btn-outline-solicitud">
+                            <i class="fa-solid fa-file-contract"></i> Ver condiciones y continuar
                         </button>
+
+                        <!-- Paso 2: Datos personales (oculto hasta aceptar condiciones) -->
+                        <div id="bloque-datos-personales" class="bloque-oculto">
+                            <div class="separador-form"></div>
+
+                            <div class="grupo-formulario">
+                                <label for="nombre-usuario">Nombre y Apellido</label>
+                                <input type="text" id="nombre-usuario" placeholder="Ej: Juan Pérez" class="input-form">
+                            </div>
+
+                            <div class="grupo-formulario">
+                                <label for="direccion-usuario">Dirección</label>
+                                <input type="text" id="direccion-usuario" placeholder="Calle, número, localidad" class="input-form">
+                            </div>
+
+                            <div class="fila-dos-columnas">
+                                <div class="grupo-formulario">
+                                    <label for="telefono-1">Teléfono 1</label>
+                                    <input type="tel" id="telefono-1" placeholder="Ej: 11 1234 5678" class="input-form">
+                                </div>
+                                <div class="grupo-formulario">
+                                    <label for="telefono-2">Teléfono 2 (distinto al anterior)</label>
+                                    <input type="tel" id="telefono-2" placeholder="Ej: 11 8765 4321" class="input-form">
+                                </div>
+                            </div>
+
+                            <p id="error-datos" class="texto-error"></p>
+
+                            <button type="button" id="btn-enviar-whatsapp" class="btn-enviar-solicitud" disabled>
+                                <i class="fa-brands fa-whatsapp"></i> Solicitar por WhatsApp
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -220,6 +268,102 @@
             </div>
         </div>
     </footer>
+
+    <!-- MODAL: Condiciones del préstamo -->
+    <div id="modal-condiciones" class="overlay-modal oculto">
+        <div class="caja-modal">
+            <h3><i class="fa-solid fa-file-contract"></i> Condiciones del préstamo</h3>
+            <ul class="lista-condiciones">
+                <li>Por cada día de atraso se aplicará el recargo por mora vigente, sin excepción.</li>
+                <li>No se otorga un segundo préstamo mientras exista uno vigente sin cancelar.</li>
+                <li>Es obligación avisar con anticipación si no se va a poder pagar en la fecha acordada.</li>
+                <li>La forma de pago se define de común acuerdo entre ambas partes.</li>
+            </ul>
+            <p class="detalle-mora" id="detalle-mora-modal"></p>
+            <label class="check-aceptar">
+                <input type="checkbox" id="check-acepto-condiciones">
+                Leí y acepto las condiciones del préstamo.
+            </label>
+            <div class="botones-modal">
+                <button type="button" id="btn-cerrar-modal" class="btn-modal-secundario">Cancelar</button>
+                <button type="button" id="btn-aceptar-modal" class="btn-modal-primario" disabled>Aceptar y continuar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: Acceso admin -->
+    <div id="modal-admin-login" class="overlay-modal oculto">
+        <div class="caja-modal caja-modal-chica">
+            <h3><i class="fa-solid fa-lock"></i> <span id="titulo-admin-login">Acceso administrador</span></h3>
+            <p class="texto-ayuda-admin" id="ayuda-admin-login"></p>
+            <input type="password" id="input-clave-admin" class="input-form" placeholder="Clave">
+            <input type="password" id="input-clave-admin-confirmar" class="input-form bloque-oculto" placeholder="Confirmar clave">
+            <p id="error-admin-login" class="texto-error"></p>
+            <div class="botones-modal">
+                <button type="button" id="btn-cerrar-admin-login" class="btn-modal-secundario">Cancelar</button>
+                <button type="button" id="btn-confirmar-admin-login" class="btn-modal-primario">Ingresar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANEL ADMIN -->
+    <div id="panel-admin" class="overlay-modal oculto">
+        <div class="caja-admin">
+            <div class="cabecera-admin">
+                <h2><i class="fa-solid fa-user-shield"></i> Panel de administración</h2>
+                <button type="button" id="btn-cerrar-admin" class="btn-cerrar-panel"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="tabs-admin">
+                <button type="button" class="tab-admin activo" data-tab="config">Configuración</button>
+                <button type="button" class="tab-admin" data-tab="activos">Préstamos activos</button>
+                <button type="button" class="tab-admin" data-tab="historial">Historial</button>
+            </div>
+
+            <!-- TAB: Configuración -->
+            <div class="contenido-tab" id="tab-config">
+                <p class="texto-ayuda-admin">Definí las tasas de interés y el recargo por mora. Vos sos responsable de que estos valores cumplan con la normativa vigente.</p>
+                <div class="fila-config">
+                    <label>Interés a 7 días (%)</label>
+                    <input type="number" id="cfg-tasa7" class="input-form" min="0" step="0.1">
+                </div>
+                <div class="fila-config">
+                    <label>Interés a 15 días (%)</label>
+                    <input type="number" id="cfg-tasa15" class="input-form" min="0" step="0.1">
+                </div>
+                <div class="fila-config">
+                    <label>Interés a 30 días (%)</label>
+                    <input type="number" id="cfg-tasa30" class="input-form" min="0" step="0.1">
+                </div>
+                <div class="fila-config">
+                    <label>Recargo por día de atraso (%)</label>
+                    <input type="number" id="cfg-mora" class="input-form" min="0" step="0.1">
+                </div>
+                <div class="fila-config">
+                    <label>Número de WhatsApp (con código de país, sin +)</label>
+                    <input type="text" id="cfg-telefono" class="input-form" placeholder="5491112345678">
+                </div>
+                <div class="fila-config">
+                    <label>Cambiar clave de acceso</label>
+                    <input type="password" id="cfg-nueva-clave" class="input-form" placeholder="Dejar en blanco para no cambiarla">
+                </div>
+                <button type="button" id="btn-guardar-config" class="btn-enviar-solicitud">Guardar configuración</button>
+                <p id="msg-guardado-config" class="texto-confirmacion oculto">Configuración guardada.</p>
+            </div>
+
+            <!-- TAB: Activos -->
+            <div class="contenido-tab oculto" id="tab-activos">
+                <p class="texto-ayuda-admin">Préstamos vigentes. Marcá "Pagado" cuando la persona cancele el total.</p>
+                <div id="lista-activos" class="lista-prestamos"></div>
+            </div>
+
+            <!-- TAB: Historial -->
+            <div class="contenido-tab oculto" id="tab-historial">
+                <p class="texto-ayuda-admin">Préstamos ya cancelados. Se guardan solo los datos escritos, sin fotos.</p>
+                <div id="lista-historial" class="lista-prestamos"></div>
+            </div>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
 </body>
