@@ -1240,3 +1240,117 @@ body {
         padding-right: 18px;
     }
 }
+/* --- ESTILOS NAVEGACIÓN BASE --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a0b12; /* Color de fondo oscuro de tu cabecera */
+  padding: 1rem 1.5rem;
+  position: relative;
+  z-index: 1000;
+}
+
+.navbar-brand .logo {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: #ff3b6b; /* Color rosado de tu marca */
+  opacity: 1;
+}
+
+/* Botón de la barra */
+.btn-primary {
+  background-color: #fde8ef;
+  color: #ff3b6b;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+/* Ocultar botón hamburguesa en desktop */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-toggle span {
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+/* --- ADAPTACIÓN RESPONSIVA (MOBILE) --- */
+@media (max-width: 850px) {
+  .menu-toggle {
+    display: flex; /* Mostrar el botón hamburguesa */
+  }
+
+  .nav-menu {
+    display: none; /* Oculta todo el menú desplegable */
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #1a0b12;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    gap: 1.5rem;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Clase que activa el menú en móvil mediante JS */
+  .nav-menu.is-active {
+    display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .nav-actions {
+    width: 100%;
+    text-align: center;
+  }
+}

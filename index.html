@@ -15,22 +15,34 @@
 </head>
 <body>
 
-    <header class="header-principal">
-        <div class="contenedor-header">
-            <div class="logo" id="logo-secreto" title="">
-                <i class="fa-solid fa-chart-line icono-logo"></i>
-                <span class="nombre-logo" id="disparador-admin">TuPrestamo</span>
-            </div>
-            <nav class="menu-navegacion">
-                <a href="#inicio" class="enlace-nav activo">Inicio</a>
-                <a href="#prestamos" class="enlace-nav">Préstamos</a>
-                <a href="#como-funciona" class="enlace-nav">¿Cómo funciona?</a>
-                <a href="#formulario" class="enlace-nav">Solicitar</a>
-            </nav>
-            <div class="accion-header">
-                <a href="#formulario" class="btn-solicitar">Solicitar ahora</a>
-            </div>
+    <header class="navbar">
+        <div class="navbar-brand">
+            <a href="#" class="logo">
+      <!-- Mantiene tu logo/texto actual -->
+                <span class="logo-icon">📈</span> TuPrestamo
+            </a>
         </div>
+
+        <!-- Botón Hamburguesa para pantallas móviles -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+            <!-- Contenedor con todos los enlaces y botones adicionales -->
+        <nav class="nav-menu" id="navMenu">
+            <div class="nav-links">
+                <a href="#" class="active">Inicio</a>
+                <a href="#">Préstamos</a>
+                <a href="#">¿Cómo funciona?</a>
+            </div>
+
+    <!-- Pega aquí el botón adicional que no se veía -->
+            <div class="nav-actions">
+                <a href="#" class="btn-primary">PRÉSTAMOS PERSONALES</a>
+            </div>
+        </nav>
     </header>
 
     <main>
