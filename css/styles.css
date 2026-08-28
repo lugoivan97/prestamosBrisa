@@ -671,7 +671,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr; /* Distribución de columnas */
+    grid-template-columns: 2fr 1fr; /* Marca + Enlaces */
     gap: 40px;
     padding-bottom: 50px;
 }
