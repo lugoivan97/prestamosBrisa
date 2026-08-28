@@ -234,7 +234,7 @@ elBtnEnviarWhatsapp.addEventListener('click', () => {
         `Teléfono 2: ${registro.telefono2}\n\n` +
         `Acepto las condiciones informadas en la web (recargo por mora del ${config.mora}% diario, ` +
         `un solo préstamo vigente a la vez, aviso previo si no puedo pagar en fecha, ` +
-        `y forma de pago a convenir).`;
+        `forma de pago a convenir, y posibilidad de solicitar fotos para validar identidad).`;
 
     const urlWhatsApp = `https://api.whatsapp.com/send?phone=${config.telefono}&text=${encodeURIComponent(textoMensaje)}`;
     window.open(urlWhatsApp, '_blank');
